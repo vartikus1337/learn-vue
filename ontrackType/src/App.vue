@@ -1,9 +1,18 @@
 <script setup lang="ts">
+import type { FunctionalComponent, HTMLAttributes, VNodeProps } from 'vue'
 import { CheckCircleIcon } from '@heroicons/vue/24/solid'
 import { ClockIcon, ListBulletIcon, ChartBarIcon } from '@heroicons/vue/24/outline'
 
+interface navItem {
+  title: string
+  icon: FunctionalComponent<HTMLAttributes & VNodeProps>
+}
 
-const navTitles: string[] = ['timeline', 'activities', 'progress']
+const navItems: Array<navItem> = [
+  { title: 'timeline', icon: ClockIcon },
+  { title: 'activities', icon: ListBulletIcon },
+  { title: 'progress', icon: ChartBarIcon }
+]
 </script>
 
 <template>
@@ -24,13 +33,10 @@ const navTitles: string[] = ['timeline', 'activities', 'progress']
   </header>
   <main>Lorem500</main>
   <nav class="fixed bottom-0 z-20 w-full bg-white text-xl">
-    <ul class="flex items-center justify-around border-t text-center pt-2">
-      <li v-for="title in navTitles" :key="title" class="flex-1 capitalize">
+    <ul class="flex items-center justify-around border-t pt-2 text-center">
+      <li v-for="{ title, icon } in navItems" :key="title" class="flex-1">
         <a class="flex flex-col" :href="`#${title}`">
-          <ClockIcon v-if="title === `${navTitles[0]}`" class="h-6" />
-          <ListBulletIcon v-else-if="title === `${navTitles[1]}`" class="h-6" />
-          <ChartBarIcon v-else class="h-6" />
-          {{ title }}
+          <component :is="icon" class="h-6" /> {{ title }}
         </a>
       </li>
     </ul>
