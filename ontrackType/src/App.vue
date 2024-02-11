@@ -35,7 +35,7 @@ const navItems: Array<navItem> = [
   <nav class="fixed bottom-0 z-20 w-full bg-white text-xl">
     <ul class="flex items-center justify-around border-t pt-2 text-center">
       <li v-for="{ title, icon } in navItems" :key="title" class="flex-1">
-        <a class="flex flex-col" :href="`#${title}`">
+        <a class="flex flex-col capitalize" :href="`#${title}`">
           <component :is="icon" class="h-6" /> {{ title }}
         </a>
       </li>
