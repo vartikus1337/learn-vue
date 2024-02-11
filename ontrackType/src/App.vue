@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { CheckCircleIcon } from '@heroicons/vue/24/solid'
 import { ClockIcon, ListBulletIcon, ChartBarIcon } from '@heroicons/vue/24/outline'
+
+
+const navTitles: string[] = ['timeline', 'activities', 'progress']
 </script>
 
 <template>
@@ -22,22 +25,12 @@ import { ClockIcon, ListBulletIcon, ChartBarIcon } from '@heroicons/vue/24/outli
   <main>Lorem500</main>
   <nav class="fixed bottom-0 z-20 w-full bg-white text-xl">
     <ul class="flex items-center justify-around border-t text-center pt-2">
-      <li class="flex-1 capitalize">
-        <a class="flex flex-col" href="#timeline">
-          <ClockIcon class="h-6" />
-          timeline
-        </a>
-      </li>
-      <li class="flex-1 capitalize">
-        <a class="flex flex-col" href="#activites">
-          <ListBulletIcon class="h-6" />
-          activites
-        </a>
-      </li>
-      <li class="flex-1 capitalize">
-        <a class="flex flex-col" href="#progress">
-          <ChartBarIcon class="h-6" />
-          progress
+      <li v-for="title in navTitles" :key="title" class="flex-1 capitalize">
+        <a class="flex flex-col" :href="`#${title}`">
+          <ClockIcon v-if="title === `${navTitles[0]}`" class="h-6" />
+          <ListBulletIcon v-else-if="title === `${navTitles[1]}`" class="h-6" />
+          <ChartBarIcon v-else class="h-6" />
+          {{ title }}
         </a>
       </li>
     </ul>
