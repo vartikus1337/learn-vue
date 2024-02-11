@@ -5,7 +5,7 @@ export default {
 </script>
 <template>
   <li class="flex-1">
-    <a v-bind="$attrs" class="flex flex-col capitalize">
+    <a v-bind="$attrs" class="flex flex-col capitalize pt-2">
       <slot></slot>
     </a>
   </li>
